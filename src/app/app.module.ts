@@ -12,14 +12,18 @@ import { AircraftsComponent } from './components/aircrafts/aircrafts.component';
 import { AircraftsEffects } from './ngrx/aircrafts.effects';
 import { AircraftsReducer } from './ngrx/aircrafts.reducer';
 import { AircraftsAlertComponent } from './components/aircrafts-alert/aircrafts-alert.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
     AircraftsComponent,
     AircraftsNavbarComponent,
-    AircraftsAlertComponent
+    AircraftsAlertComponent,
+    LoginPageComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
