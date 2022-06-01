@@ -30,3 +30,9 @@ a{
 th, td{
     padding: 10px;
 }
+
+.btn.btn-airbus{
+    background-color: #00205b !important;
+    border-color: #00205b !important;
+    color: white !important;
+}
