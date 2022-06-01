@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
 import { selectCountAlertAircrafts } from 'src/app/ngrx/aircrafts.selectors';
@@ -14,7 +15,7 @@ export class AircraftsComponent implements OnInit {
   readonly aircraftsStateEnum = AircraftsStateEnum;
   countAlertAircfrats$ : Observable<number> | undefined;
   
-  constructor(private store:Store<any>) {  
+  constructor(private store:Store<any>, private router : Router) {  
     this.countAlertAircfrats$ = store.select(selectCountAlertAircrafts);
   }
 
@@ -23,5 +24,9 @@ export class AircraftsComponent implements OnInit {
           //dit autrement : nous recevons le state dès qu'il change afin de permettre l'affichage adéquat de ses données
           map((state)=> state.airbusState)  
     );  
+  }
+
+  toAlert(){
+    this.router.navigateByUrl('aircrafts-alert')    
   }
 }
