@@ -1,0 +1,28 @@
+.text-danger{
+    margin-bottom: 0;
+}
+
+.alert-container{
+    align-self: center;
+}
+
+.id-plane{
+    font-size: 20px;
+}
+
+.table-planes{
+    margin-top: 20px;
+}
+
+.btn-options{
+    text-align-last: center;
+}
+
+.container-table{
+    max-width: 70%;
+}
+
+a{
+    text-decoration: none;
+    color: #DC3545;
+}
