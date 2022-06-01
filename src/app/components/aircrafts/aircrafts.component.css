@@ -26,3 +26,7 @@ a{
     text-decoration: none;
     color: #DC3545;
 }
+
+th, td{
+    padding: 10px;
+}
