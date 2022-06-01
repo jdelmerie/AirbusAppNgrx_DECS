@@ -1,41 +1,28 @@
-<html>
-  <head>
-
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  </head>
-<body id="LoginForm">
 <div class="container">
-<h1 class="form-heading">login Form</h1>
-<div class="login-form">
-<div class="main-div">
-    <div class="panel">
-  
-   <p>Please enter your email and password</p>
-   </div>
-    <form id="Login">
-
-        <div class="form-group">
-
-
-            <input type="email" class="form-control" id="inputEmail" placeholder="Email Address">
-
-        </div>
-
-        <div class="form-group">
-
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-
-        </div>
-
-        <button type="submit" class="btn btn-primary">Login</button>
-
-    </form>
+  <h4>Login</h4>
+  <form class="col-md-4" [formGroup]="form" (ngSubmit)="onSubmit(form)">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email</label>
+      <input
+        type="email"
+        name="email"
+        class="form-control"
+        formControlName="email"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
     </div>
-</div></div>
-
-
-</body>
-</html>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input
+        type="password"
+        name="pwd"
+        formControlName="pwd"
+        class="form-control"
+        id="exampleInputPassword1"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="alert alert-danger mt-2" role="alert">Email or password incorrect !</div>
+  </form>
+</div>
