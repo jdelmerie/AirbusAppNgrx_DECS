@@ -12,6 +12,7 @@ export function AuthReducer(
     case AuthActionsTypes.GET_USER_SUCCESS:
       return {
         ...state,
+        isAuth: true,
         dataState: AuthStateEnum.LOADED,
         user: (<AuthActions>action).payload,
       };

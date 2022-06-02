@@ -23,10 +23,7 @@ export class AuthEffects {
         return this.authService
           .getUser(action.payload.email, action.payload.pwd)
           .pipe(
-            map((users) => {
-              console.log(users)
-              return new GetUserSuccess(users);
-            }),
+            map((users) => new GetUserSuccess(users[0])),
             catchError((err) => of(new GetUserError(err.message)))
           );
       })

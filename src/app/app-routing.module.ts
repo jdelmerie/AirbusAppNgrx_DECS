@@ -5,13 +5,14 @@ import { AircraftsComponent } from './components/aircrafts/aircrafts.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 
 const routes: Routes = [
-  { path : "aircrafts", component : AircraftsComponent },
-  { path : "aircrafts-alert", component : AircraftsAlertComponent },
-  {path: "login", component: LoginPageComponent}
+  { path: 'aircrafts', component: AircraftsComponent },
+  { path: 'aircrafts-alert', component: AircraftsAlertComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path : '' , redirectTo : 'login', pathMatch : 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

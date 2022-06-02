@@ -14,7 +14,7 @@ export class GetUser implements Action {
 
 export class GetUserSuccess implements Action {
   type: AuthActionsTypes = AuthActionsTypes.GET_USER_SUCCESS;
-  constructor(public payload: User[]) {}
+  constructor(public payload: User) {}
 }
 
 export class GetUserError implements Action {

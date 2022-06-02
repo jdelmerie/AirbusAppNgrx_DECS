@@ -19,7 +19,8 @@ export class LoginPageComponent implements OnInit {
 
   authState$: Observable<AuthState> | null = null;
   readonly authStateEnum = AuthStateEnum;
-  isAuth$: Observable<boolean> | undefined;
+  isAuth: boolean = false;
+  displayError: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,12 +31,10 @@ export class LoginPageComponent implements OnInit {
       email: ['', Validators.required],
       pwd: ['', [Validators.required, Validators.pattern('[a-z0-9.@]*')]],
     });
-    this.isAuth$ = this.store.select(checkLogin);
   }
 
   ngOnInit(): void {
-    this.authState$ = this.store.pipe(select((state) => state));
-    console.log(this.authState$);
+    this.authState$ = this.store.pipe(map((state) => state.authState));
   }
 
   onSubmit(form: FormGroup) {
@@ -46,12 +45,18 @@ export class LoginPageComponent implements OnInit {
       };
       this.store.dispatch(new GetUser(payload));
 
-      this.authState$ = this.store.pipe(select((state) => state));
-      console.log(this.authState$);
+      this.authState$?.subscribe((__values) => {
+        console.log(__values);
+        if (__values.user && __values.isAuth == true) {
+          if (__values.user.email == payload.email &&__values.user.pwd == payload.pwd) {
+            this.isAuth = true;
+            this.user = __values.user;
+            this.router.navigateByUrl('aircrafts');
+          } 
+        }else {
+          this.displayError = true;
+        }
+      });
     }
-  }
-
-  onLogged() {
-    this.router.navigateByUrl('aircrafts');
   }
 }
