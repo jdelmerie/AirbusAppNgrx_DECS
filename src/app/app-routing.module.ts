@@ -7,7 +7,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 const routes: Routes = [
   { path : "aircrafts", component : AircraftsComponent },
   { path : "aircrafts-alert", component : AircraftsAlertComponent },
-  {path: "login-page", component: LoginPageComponent}
+  {path: "login", component: LoginPageComponent}
 ];
 
 @NgModule({

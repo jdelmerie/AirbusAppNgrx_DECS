@@ -5,11 +5,11 @@ export const checkLogin = createSelector(
   createFeatureSelector('authState'),
   (state: AuthState) => {
       console.log("dans le selector")
-    state.users.forEach((u) => {
-      if (u.email == 'airbus@fms.com' && u.pwd == '123') {
-        state.isAuth = true;
-      }
-    });
+    // state.users.forEach((u) => {
+    //   if (u.email == 'airbus@fms.com' && u.pwd == '123') {
+    //     state.isAuth = true;
+    //   }
+    // });
     return state.isAuth;
   }
 );

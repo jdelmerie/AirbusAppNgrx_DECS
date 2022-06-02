@@ -7,18 +7,15 @@ export function AuthReducer(
   action: Action
 ): AuthState {
   switch (action.type) {
-    case AuthActionsTypes.GET_USERS:
-      console.log('dans les reducteur');
+    case AuthActionsTypes.GET_USER:
       return { ...state, dataState: AuthStateEnum.LOADING };
-    case AuthActionsTypes.GET_USERS_SUCCESS:
-      console.log('dans les reducteur success');
+    case AuthActionsTypes.GET_USER_SUCCESS:
       return {
         ...state,
         dataState: AuthStateEnum.LOADED,
-        users: (<AuthActions>action).payload,
+        user: (<AuthActions>action).payload,
       };
-    case AuthActionsTypes.GET_USERS_ERROR:
-      console.log('dans les reducteur ERROR');
+    case AuthActionsTypes.GET_USER_ERROR:
       return {
         ...state,
         dataState: AuthStateEnum.ERROR,

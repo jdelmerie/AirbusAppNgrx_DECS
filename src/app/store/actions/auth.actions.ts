@@ -2,26 +2,24 @@ import { Action } from '@ngrx/store';
 import { User } from 'src/app/model/user.model';
 
 export enum AuthActionsTypes {
-  GET_USERS = '[User] Get Users',
-  GET_USERS_SUCCESS = '[User] Get Users Success',
-  GET_USERS_ERROR = '[User] Get Users Error',
+  GET_USER = '[User] Get Users',
+  GET_USER_SUCCESS = '[User] Get Users Success',
+  GET_USER_ERROR = '[User] Get Users Error',
 }
 
-export class GetUsers implements Action {
-  type: AuthActionsTypes = AuthActionsTypes.GET_USERS;
-  constructor(public payload: any) {
-    console.log('dans les actions');
-  }
+export class GetUser implements Action {
+  type: AuthActionsTypes = AuthActionsTypes.GET_USER;
+  constructor(public payload: any) {}
 }
 
-export class GetUsersSuccess implements Action {
-  type: AuthActionsTypes = AuthActionsTypes.GET_USERS_SUCCESS;
+export class GetUserSuccess implements Action {
+  type: AuthActionsTypes = AuthActionsTypes.GET_USER_SUCCESS;
   constructor(public payload: User[]) {}
 }
 
-export class GetUsersError implements Action {
-  type: AuthActionsTypes = AuthActionsTypes.GET_USERS_ERROR;
+export class GetUserError implements Action {
+  type: AuthActionsTypes = AuthActionsTypes.GET_USER_ERROR;
   constructor(public payload: string) {}
 }
 
-export type AuthActions = GetUsers | GetUsersSuccess | GetUsersError;
+export type AuthActions = GetUser | GetUserSuccess | GetUserError;

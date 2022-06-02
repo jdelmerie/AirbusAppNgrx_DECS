@@ -23,22 +23,25 @@ import { AuthEffects } from './store/effects/auth.effects';
     AircraftsComponent,
     AircraftsNavbarComponent,
     AircraftsAlertComponent,
-    LoginPageComponent
+    LoginPageComponent,
   ],
-  
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({airbusState : AircraftsReducer, }),
-    StoreModule.forRoot({authState : AuthReducer, }),   //spécifier le reducer
-    EffectsModule.forRoot([AircraftsEffects, AuthEffects]),               //spécifier les effects
-    StoreDevtoolsModule.instrument()  //en l'activant ici, à chaque action de NgRx dans l'appli
-                                      //le plugin redux (chrome) permet l'analyse du state durant le dev
+    StoreModule.forRoot({
+      airbusState: AircraftsReducer,
+      authState: AuthReducer,
+    }),
+    //spécifier le reducer
+    EffectsModule.forRoot([AircraftsEffects, AuthEffects]), //spécifier les effects
+    StoreDevtoolsModule.instrument(), //en l'activant ici, à chaque action de NgRx dans l'appli
+    //le plugin redux (chrome) permet l'analyse du state durant le dev
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -8,14 +8,14 @@ export enum AuthStateEnum {
 
 export interface AuthState {
   isAuth: boolean;
-  users: User[];
+  user: User;
   error: string | null;
   dataState: AuthStateEnum;
 }
 
 export const initialState: AuthState = {
   isAuth: false,
-  users: [],
+  user: new User(0, '', '', []),
   error: '',
   dataState: AuthStateEnum.LOADING,
 };
