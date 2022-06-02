@@ -1,0 +1,15 @@
+.container-table{
+    max-width: 70%;
+}
+
+th, td{
+    padding: 10px;
+}
+
+.table-planes{
+    margin-top: 20px;
+}
+
+.id-plane{
+    font-size: 20px;
+}
