@@ -1,10 +1,49 @@
 {
-    "aircrafts": [
-      {"id": 1,"prog": "A350","design": true,"development": false},
-      {"id": 2,"prog": "A320","design": false,"development": true},
-      {"id": 3,"prog": "A380","design": true,"development": true},
-      {"id": 4,"prog": "A400M","design": false,"development": false},
-      {"id": 5,"prog": "A330","design": true,"development": true}
-    ]
-  }
-  
+  "aircrafts": [
+    {
+      "id": 1,
+      "prog": "A350",
+      "design": true,
+      "development": false
+    },
+    {
+      "id": 2,
+      "prog": "A320",
+      "design": false,
+      "development": true
+    },
+    {
+      "id": 3,
+      "prog": "A380",
+      "design": true,
+      "development": true
+    },
+    {
+      "id": 4,
+      "prog": "A400M",
+      "design": false,
+      "development": false
+    },
+    {
+      "id": 5,
+      "prog": "A330",
+      "design": true,
+      "development": true
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "airbus@fms.com",
+      "pwd": "123",
+      "roles": [
+        "USER"
+      ]
+    },
+    {
+      "email": "j.Delmerie@live.fr",
+      "pwd": "123",
+      "id": 2
+    }
+  ]
+}

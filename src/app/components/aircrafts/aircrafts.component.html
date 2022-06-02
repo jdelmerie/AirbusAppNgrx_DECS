@@ -46,13 +46,33 @@
     </div>
 
 
+    <!-- <ng-container *ngSwitchCase="aircraftsStateEnum.LOADED">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Program</th>
+            <th>Design</th>
+            <th>Development</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let aircraft of state.aircrafts">
+            <td>{{ aircraft.id }}</td>
+            <td>{{ aircraft.prog }}</td>
+            <td>{{ aircraft.design }}</td>
+            <td>{{ aircraft.development }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </ng-container>
 </div>
 
-
-
-
-<!-- <div>
-    <ng-container *ngIf="countAlertAircfrats$ | async as countAircfrats">
-        <h6 class="text-danger"> total aircrafts under design & dev : {{countAircfrats}} </h6>
-    </ng-container>
+<div>
+  <ng-container *ngIf="countAlertAircfrats$ | async as countAircfrats">
+    <h6 class="text-danger">
+      total aircrafts under design & dev : {{ countAircfrats }}
+    </h6>
+  </ng-container>
 </div> -->
