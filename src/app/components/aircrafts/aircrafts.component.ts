@@ -7,6 +7,7 @@ import {
   AircraftsState,
   AircraftsStateEnum,
 } from 'src/app/ngrx/aircrafts.state';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 @Component({
   selector: 'app-aircrafts',
@@ -18,7 +19,7 @@ export class AircraftsComponent implements OnInit {
   readonly aircraftsStateEnum = AircraftsStateEnum;
   countAlertAircfrats$: Observable<number> | undefined;
 
-  constructor(private store: Store<any>, private router: Router) {
+  constructor(private store: Store<any>, private router: Router, private guard: AuthGuardService) {
     this.countAlertAircfrats$ = store.select(selectCountAlertAircrafts);
   }
 
@@ -29,6 +30,7 @@ export class AircraftsComponent implements OnInit {
       //dit autrement : nous recevons le state dès qu'il change afin de permettre l'affichage adéquat de ses données
       map((state) => state.airbusState)
     );
+    
   }
 
   toAlert() {

@@ -13,9 +13,10 @@ import { AircraftsEffects } from './ngrx/aircrafts.effects';
 import { AircraftsReducer } from './ngrx/aircrafts.reducer';
 import { AircraftsAlertComponent } from './components/aircrafts-alert/aircrafts-alert.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
-import { RouterModule } from '@angular/router';
 import { AuthReducer } from './store/reducers/auth.reducers';
 import { AuthEffects } from './store/effects/auth.effects';
+import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { AuthEffects } from './store/effects/auth.effects';
     StoreDevtoolsModule.instrument(), //en l'activant ici, à chaque action de NgRx dans l'appli
     //le plugin redux (chrome) permet l'analyse du state durant le dev
   ],
-  providers: [],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

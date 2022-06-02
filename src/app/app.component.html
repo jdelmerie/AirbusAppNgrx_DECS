@@ -16,7 +16,9 @@
 
   <ul class="navbar-nav m-2" *ngIf="isAuth">
     <li class="nav-item">
-      <button type="button"><i class="fa fa-sign-out color-airbus" id="deco" aria-hidden="true"></i></button>
+      <button type="button" (click)="onLogout()">
+        <i class="fa fa-sign-out color-airbus" id="deco" aria-hidden="true"></i>
+      </button>
     </li>
   </ul>
 </nav>

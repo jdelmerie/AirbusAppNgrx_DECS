@@ -15,4 +15,10 @@ export class AuthService {
       environment.host + '/users?email=' + email + '&pwd=' + pwd
     );
   }
+
+  public saveCurrentUser(user: User) {
+    if (user) {
+      localStorage.setItem('userConnected', btoa(JSON.stringify(user)));
+    }
+  }
 }

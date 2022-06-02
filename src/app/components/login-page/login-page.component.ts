@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
 import { User } from 'src/app/model/user.model';
 import { GetUser } from 'src/app/store/actions/auth.actions';
 import { AuthState, AuthStateEnum } from 'src/app/store/auth.states';
-import { checkLogin } from 'src/app/store/selectors/auth.selectors';
 
 @Component({
   selector: 'app-login-page',
@@ -44,16 +43,12 @@ export class LoginPageComponent implements OnInit {
         pwd: form.value.pwd,
       };
       this.store.dispatch(new GetUser(payload));
-
       this.authState$?.subscribe((__values) => {
-        console.log(__values);
         if (__values.user && __values.isAuth == true) {
-          if (__values.user.email == payload.email &&__values.user.pwd == payload.pwd) {
-            this.isAuth = true;
-            this.user = __values.user;
-            this.router.navigateByUrl('aircrafts');
-          } 
-        }else {
+          this.isAuth = true;
+          this.user = __values.user;
+          this.router.navigateByUrl('aircrafts');
+        } else {
           this.displayError = true;
         }
       });
