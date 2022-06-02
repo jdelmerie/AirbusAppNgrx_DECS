@@ -6,3 +6,8 @@
 i#deco{
     font-size: 35px !important;
 }
+
+button{
+    border: none;
+    background: none;
+}
