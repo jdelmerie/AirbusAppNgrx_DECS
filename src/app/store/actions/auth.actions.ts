@@ -5,6 +5,7 @@ export enum AuthActionsTypes {
   GET_USER = '[User] Get Users',
   GET_USER_SUCCESS = '[User] Get Users Success',
   GET_USER_ERROR = '[User] Get Users Error',
+  GET_USER_DENIED = '[User] Get User Denied',
   LOGOUT = '[User] Logout',
 }
 
@@ -23,9 +24,14 @@ export class GetUserError implements Action {
   constructor(public payload: string) {}
 }
 
+export class GetUserDenied implements Action {
+  type: AuthActionsTypes = AuthActionsTypes.GET_USER_DENIED;
+  constructor(public payload: any) {}
+}
+
 export class Logout implements Action {
   type: AuthActionsTypes = AuthActionsTypes.LOGOUT;
   constructor(public payload: string) {}
 }
 
-export type AuthActions = GetUser | GetUserSuccess | GetUserError | Logout;
+export type AuthActions = GetUser | GetUserSuccess | GetUserError | GetUserDenied | Logout;

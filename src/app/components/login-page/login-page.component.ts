@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
 import { User } from 'src/app/model/user.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { GetUser } from 'src/app/store/actions/auth.actions';
 import { AuthState, AuthStateEnum } from 'src/app/store/auth.states';
 
@@ -14,8 +15,6 @@ import { AuthState, AuthStateEnum } from 'src/app/store/auth.states';
 })
 export class LoginPageComponent implements OnInit {
   form: FormGroup;
-  user: User = new User(0, '', '', []);
-
   authState$: Observable<AuthState> | null = null;
   readonly authStateEnum = AuthStateEnum;
   isAuth: boolean = false;
@@ -24,7 +23,8 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private store: Store<any>,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.form = this.formBuilder.group({
       email: ['', Validators.required],
@@ -33,7 +33,15 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authState$ = this.store.pipe(map((state) => state.authState));
+    this.authState$ = this.store.pipe(
+      map((state) => {
+        if (state.authState.isAuth) {
+          this.authService.saveCurrentUser(state.authState.user);
+          this.router.navigateByUrl('aircrafts');
+        }
+        return state.authState;
+      })
+    );
   }
 
   onSubmit(form: FormGroup) {
@@ -43,15 +51,6 @@ export class LoginPageComponent implements OnInit {
         pwd: form.value.pwd,
       };
       this.store.dispatch(new GetUser(payload));
-      this.authState$?.subscribe((__values) => {
-        if (__values.user && __values.isAuth == true) {
-          this.isAuth = true;
-          this.user = __values.user;
-          this.router.navigateByUrl('aircrafts');
-        } else {
-          this.displayError = true;
-        }
-      });
     }
   }
 }

@@ -3,6 +3,7 @@ import { User } from '../model/user.model';
 export enum AuthStateEnum {
   LOADING = 'Loading', //chargement en cours
   LOADED = 'Loaded', //chargé
+  DENIED = 'Denied',
   ERROR = 'Error', //erreur
 }
 

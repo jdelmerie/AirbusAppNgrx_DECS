@@ -27,8 +27,8 @@
       *ngIf="authState$ | async as state"
       [ngSwitch]="state.dataState"
     >
-      <ng-container *ngSwitchCase="authStateEnum.LOADED">
-        <div class="alert alert-danger mt-2" role="alert" *ngIf="displayError">
+      <ng-container *ngSwitchCase="authStateEnum.DENIED">
+        <div class="alert alert-danger mt-2" role="alert">
           Email or password incorrect !
         </div>
       </ng-container>

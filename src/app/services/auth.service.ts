@@ -10,8 +10,8 @@ import { User } from '../model/user.model';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  public getUser(email: string, pwd: string): Observable<User[]> {
-    return this.http.get<User[]>(
+  public getUser(email: string, pwd: string): Observable<User> {
+    return this.http.get<User>(
       environment.host + '/users?email=' + email + '&pwd=' + pwd
     );
   }

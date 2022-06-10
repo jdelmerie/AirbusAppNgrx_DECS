@@ -41,9 +41,12 @@
       ]
     },
     {
+      "id": 2,
       "email": "j.Delmerie@live.fr",
       "pwd": "123",
-      "id": 2
+      "roles": [
+        "USER"
+      ]
     }
   ]
 }

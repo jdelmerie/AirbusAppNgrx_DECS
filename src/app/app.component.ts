@@ -5,6 +5,7 @@ import { map, Observable } from 'rxjs';
 import { AuthGuardService } from './services/auth-guard.service';
 import { Logout } from './store/actions/auth.actions';
 import { AuthState } from './store/auth.states';
+import { selectIsConnected } from './store/selectors/auth.selectors';
 
 @Component({
   selector: 'app-root',
@@ -13,32 +14,32 @@ import { AuthState } from './store/auth.states';
 })
 export class AppComponent {
   title = 'airbus-app-ngrx';
+  isAuth$: Observable<Boolean> | null = null;
   authState$: Observable<AuthState> | null = null;
-  isAuth: boolean = false;
 
-  constructor(private store: Store<any>, private authGuard: AuthGuardService,  public router: Router) {}
+  constructor(
+    private store: Store<any>,
+    private authGuard: AuthGuardService,
+    public router: Router
+  ) {
+    this.isAuth$ = store.select(selectIsConnected);
+  }
 
   ngOnInit(): void {
-    this.authState$ = this.store.pipe(map((state) => state.authState));
+    //protect routes si user pas connecté peut pas accéder à l'appli
+    if (this.isAuth$) {
+      this.authGuard.canActivate(false);
+    }
 
-    this.authState$?.subscribe((__values) => {
-      this.isAuth = __values.isAuth ? true : false;
-      //protect routes
-      if (!__values.isAuth) {
-        this.authGuard.canActivate(false);
-      }
-
-      if (localStorage.getItem('userConnected') != null) {
-        this.isAuth = true;
-        this.router.navigateByUrl('aircrafts');
-      } else {
-        this.isAuth = false;
-        this.router.navigateByUrl('login');
-      }
-    });
+    if (localStorage.getItem('userConnected') != null) {
+      this.router.navigateByUrl('aircrafts');
+    } else {
+      this.router.navigateByUrl('login');
+    }
   }
 
   onLogout() {
     this.store.dispatch(new Logout('Bye bye'));
+    this.router.navigate(['login']);
   }
 }

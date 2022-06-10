@@ -4,7 +4,7 @@
   <div class="d-flex flex-row align-items-center">
     <a class="navbar-brand m-2 color-airbus" href="#">AIRBUS</a>
 
-    <ul class="navbar-nav" *ngIf="isAuth">
+    <ul class="navbar-nav" *ngIf="isAuth$ | async">
       <li class="nav-item">
         <a class="nav-link color-airbus" routerLink="/aircrafts">Aircrafts</a>
       </li>
@@ -14,7 +14,7 @@
     </ul>
   </div>
 
-  <ul class="navbar-nav m-2" *ngIf="isAuth">
+  <ul class="navbar-nav m-2" *ngIf="isAuth$ | async">
     <li class="nav-item">
       <button type="button" (click)="onLogout()">
         <i class="fa fa-sign-out color-airbus" id="deco" aria-hidden="true"></i>

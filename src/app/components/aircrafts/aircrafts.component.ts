@@ -7,7 +7,7 @@ import {
   AircraftsState,
   AircraftsStateEnum,
 } from 'src/app/ngrx/aircrafts.state';
-import { AuthGuardService } from 'src/app/services/auth-guard.service';
+import { selectIsConnected } from 'src/app/store/selectors/auth.selectors';
 
 @Component({
   selector: 'app-aircrafts',
@@ -18,19 +18,17 @@ export class AircraftsComponent implements OnInit {
   aircraftsState$: Observable<AircraftsState> | null = null;
   readonly aircraftsStateEnum = AircraftsStateEnum;
   countAlertAircfrats$: Observable<number> | undefined;
+  isAuth$: Observable<Boolean> | null = null;
 
-  constructor(private store: Store<any>, private router: Router, private guard: AuthGuardService) {
+  constructor(private store: Store<any>, private router: Router) {
     this.countAlertAircfrats$ = store.select(selectCountAlertAircrafts);
+    this.isAuth$ = store.select(selectIsConnected);
   }
 
   ngOnInit(): void {
-    //notre composant doit observer le state dans le store
     this.aircraftsState$ = this.store.pipe(
-      //on écoute ce qui se passe dans le store, dès qu'on reçoit les données, on peut faire un map
-      //dit autrement : nous recevons le state dès qu'il change afin de permettre l'affichage adéquat de ses données
       map((state) => state.airbusState)
     );
-    
   }
 
   toAlert() {

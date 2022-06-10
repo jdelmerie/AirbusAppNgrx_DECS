@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import {
   AuthActions,
   AuthActionsTypes,
+  GetUserDenied,
   GetUserError,
   GetUserSuccess,
 } from '../actions/auth.actions';
@@ -23,9 +24,8 @@ export class AuthEffects {
         return this.authService
           .getUser(action.payload.email, action.payload.pwd)
           .pipe(
-            map((users) => {
-              this.authService.saveCurrentUser(users[0]);
-              return new GetUserSuccess(users[0]);
+            map((user) => {
+              return (Object.keys(user).length == 0) ? new GetUserDenied(null) : new GetUserSuccess(user);
             }),
             catchError((err) => of(new GetUserError(err.message)))
           );
